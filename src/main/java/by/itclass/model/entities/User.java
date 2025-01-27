@@ -1,18 +1,19 @@
 package by.itclass.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "new_user")
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "fio")
-    private String name;
-    private int age;
+    @NonNull private String name;
+    @NonNull private int age;
 }

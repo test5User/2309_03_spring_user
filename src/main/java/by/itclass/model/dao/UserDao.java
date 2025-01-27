@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface UserDao {
     List<User> selectAllUsers();
+
+    void remove(int id);
+
+    void insert(User user);
 }
