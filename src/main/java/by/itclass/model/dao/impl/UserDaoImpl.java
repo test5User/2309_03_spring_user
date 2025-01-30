@@ -43,4 +43,13 @@ public class UserDaoImpl implements UserDao {
             transaction.commit();
         }
     }
+
+    @Override
+    public void update(User user) {
+        try (var session = factory.openSession()){
+            var transaction = session.beginTransaction();
+            session.merge(user);
+            transaction.commit();
+        }
+    }
 }

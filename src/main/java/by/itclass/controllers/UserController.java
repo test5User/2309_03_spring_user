@@ -57,4 +57,25 @@ public class UserController {
         service.add(new User(name, age));
         return "redirect:" + ALL_USERS_URL;
     }
+
+    @GetMapping(UPD_USER_URL)
+    public ModelAndView upd(@RequestParam(name="id") int id,
+                            @RequestParam(name="name") String name,
+                            @RequestParam(name="age") int age) {
+        return new ModelAndView(UPD_PAGE, USER_ATTR, new User(id, name, age));
+    }
+
+    @PostMapping(SAVE_UPD_USER_URL)
+    public String saveUpd(@ModelAttribute(name = USER_ATTR) User user) {
+        service.update(user);
+        return "redirect:" + ALL_USERS_URL;
+    }
+
+    @PostMapping(UPD_USER_URL_OLD)
+    public String updOld(@RequestParam(name="id") int id,
+                         @RequestParam(name="name") String name,
+                         @RequestParam(name="age") int age) {
+        service.update(new User(id, name, age));
+        return "redirect:" + ALL_USERS_URL;
+    }
 }

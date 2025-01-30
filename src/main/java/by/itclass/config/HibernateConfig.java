@@ -1,5 +1,6 @@
 package by.itclass.config;
 
+import by.itclass.model.entities.Address;
 import by.itclass.model.entities.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,6 +11,7 @@ public class HibernateConfig {
     public Configuration configuration() {
         var cfg = new Configuration();
         cfg.addAnnotatedClass(User.class);
+        cfg.addAnnotatedClass(Address.class);
         return cfg;
     }
 

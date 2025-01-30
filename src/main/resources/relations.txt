@@ -1,0 +1,85 @@
+many-to-one
+    @Entity
+    @Table(name="orders")
+    class Order {
+        int id;
+        ....
+    }
+
+    @Entity
+    class OrderItem {
+        int id;
+        ....
+        @ManyToOne
+        @JoinColumn(name="orderId")
+        Order order;
+    }
+
+one-to-many
+
+    @Entity
+    @Table(name="orders")
+    class Order {
+        int id;
+        .....
+        @OneToMany
+        @JoinColumn(name="orderId")
+        List<OrderItem> orderItems;
+    }
+
+    @Entity
+    class OrderItem {
+        int id;
+        ....
+    }
+
+many-to-many
+
+    @Entity
+    class User {
+        int id;
+        ....
+        @ManyToMany
+        @JoinTable(name="user_task",
+            joinColumns=@JoinColumn(name="user_id, referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="task_id", referencedColumnName="id"))
+        Set<Task> tasks;
+    }
+
+    @Entity
+    class Task {
+        int id;
+        ....
+        @ManyToMany
+        @JoinTable(name="user_task",
+            joinColumns=@JoinColumn(name="task_id, referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id"))
+        Set<User> users;
+    }
+
+    user
+    1   Vasia
+    2   Petia
+    3   Ivan
+
+    task
+    1   First
+    2   Second
+    3   Third
+
+    Опишем вариант:
+     Вася работает над First и Second
+     Петя работает над Second и Third
+     Иван работает над First и Third
+
+
+    user_task
+    1   1
+    1   2
+    2   2
+    2   3
+    3   1
+    3   3
+
+one-to-one
+    напишем в коде (см. проект)
